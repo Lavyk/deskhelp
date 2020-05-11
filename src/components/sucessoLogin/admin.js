@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Notifications, UsersOnline } from "./admin/alertas";
 import "./main.css";
 
 class AdminDashboard extends Component {
@@ -19,17 +20,12 @@ class AdminDashboard extends Component {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "200px",
+          marginTop: "0px",
           color: "#000",
         }}
       >
-        <div class="lds-ripple">
-          <div></div>
-          <div></div>
-        </div>
-        <br></br>
-        <br></br>
-        Olá, você é um administrador.
+        <UsersOnline />
+        <Notifications />
       </div>
     );
   }

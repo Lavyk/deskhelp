@@ -19,16 +19,16 @@ const clientId =
 
 const success = (response) => {
   var profile = response.getBasicProfile();
-  const socket = socketIOClient("http://192.168.1.5:4001");
+  const socket = socketIOClient("http://localhost:4001");
   socket.emit("storeUserInfo", {
     email: profile.getEmail(),
   });
-
+  console.log(profile.getEmail());
   var loginResult;
   socket.on("login result", function (data) {
+
     if (data.result === "sucessoDB") {
       const result = data.result;
-      console.log(data.nome);
       const user = {
         matricula: data.matricula,
         nome: data.nome,
@@ -144,17 +144,22 @@ class LoginPlease extends React.Component {
       <div
         style={{
           justifyContent: "center",
-          marginTop: "200px",
           color: "#d2d2d2",
         }}
       >
-        {/* <img src={foodImg} alt="food" height="100" width="100" className="pleaseLogin" /> */}
-        <center>
-          <div className="pleaseLogin" height="100" width="100"></div>
-        </center>
-        <br></br>
+        <div
+          style={{
+            marginTop: "200px"
+          }}
+        >
+          {/* <img src={foodImg} alt="food" height="100" width="100" className="pleaseLogin" /> */}
+          <center>
+            <div className="pleaseLogin" height="100" width="100"></div>
+          </center>
+          <br></br>
         Faça o login para continuar!
       </div>
+      </div >
     );
   }
 }

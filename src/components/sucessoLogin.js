@@ -51,15 +51,23 @@ class BemVindoLogin extends React.Component {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "200px",
+          marginTop: "0px",
           color: "#000",
         }}
       >
-        <img src={winner} alt="food" height="100" width="100" />
-        <br></br>
-        <br></br>
+
+        <div
+          className="slide-in-blurred-left"
+          style={{
+            marginTop: "200px",
+          }}
+        >
+          <img src={winner} alt="food" height="100" width="100" />
+          <br></br>
+          <br></br>
         Seja bem vindo, {user.nome}, estamos logado! <br></br>
         Vamos ao trabalho.
+          </div>
       </div>
     );
   }
@@ -82,19 +90,19 @@ class LoadDashboard extends React.Component {
       switch (user.cargo) {
         case 0:
           dashboard = <AdminDashboard user={this.props.user} />;
-        break;
+          break;
 
         case 1:
           dashboard = <AtendenteDashboard user={this.props.user} />;
-        break;
+          break;
 
         case 2:
           dashboard = <SupervisorDashboard user={this.props.user} />;
-        break;
+          break;
       }
 
-      ReactDOM.render( dashboard, document.getElementById("body"));
-      
+      ReactDOM.render(dashboard, document.getElementById("body"));
+
     }, 5000);
 
     return (
@@ -107,7 +115,7 @@ class LoadDashboard extends React.Component {
           color: "#000",
         }}
       >
-        <div class="lds-ripple">
+        <div className="lds-ripple">
           <div></div>
           <div></div>
         </div>
