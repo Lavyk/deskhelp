@@ -21,7 +21,7 @@ var con = mysql.createConnection({
 con.connect(function (err) {
   if (err) console.log("[BD] Não conectado");
   else {
-    console.log("[BD] Conectado");
+    console.log("[BD] Conectado!");
   }
 });
 
@@ -33,9 +33,9 @@ io.on("connection", (socket) => {
     const sql = "SELECT * FROM users WHERE email = '" + data.email + "'";
     con.query(sql, function (err, result, fields) {
       if (err) {
-        io.to(socket.id).emit("login result", {result:"erroDB"});
+        io.to(socket.id).emit("login result", { result: "erroDB" });
       } else {
-        
+
         if (result.length > 0) {
           io.to(socket.id).emit("login result", "sucessoDB");
           var userInfo = new Object();
@@ -47,16 +47,16 @@ io.on("connection", (socket) => {
           userInfo.supervisor = result[0].supervisor;
 
           users.push(userInfo);
-          io.to(socket.id).emit("login result", { result:"sucessoDB", nome: userInfo.nome, matricula: userInfo.matricula, email: userInfo.email, cargo: userInfo.cargo});
+          io.to(socket.id).emit("login result", { result: "sucessoDB", nome: userInfo.nome, matricula: userInfo.matricula, email: userInfo.email, cargo: userInfo.cargo });
           console.log(
             "[" +
-              userInfo.matricula +
-              "] " +
-              userInfo.nome +
-              " entrou no Helpdesk"
+            userInfo.matricula +
+            "] " +
+            userInfo.nome +
+            " entrou no Helpdesk"
           );
         } else {
-          io.to(socket.id).emit("login result", {result:"nullUserDB"});
+          io.to(socket.id).emit("login result", { result: "nullUserDB" });
         }
       }
     });
